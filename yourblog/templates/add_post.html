@@ -3,14 +3,18 @@
 {% block content %}
 
 
-<h1>Add Blog</h1>
-<br/><br/>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!-- {{ form.as_ul }} -->
-        <button class="btn btn-success">Add Blog</button>
-    </form>
-</div>
+{% if user.is_authenticated %}
+    <h1>Add Blog</h1>
+    <br/><br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- {{ form.as_ul }} -->
+            <button class="btn btn-success">Add Blog</button>
+        </form>
+    </div>
+{% else %}
+    YOU ARE NOT ALLOWED TO ADD POSTS!!
+{% endif %}
 {% endblock %}

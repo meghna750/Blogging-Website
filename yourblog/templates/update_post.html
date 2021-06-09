@@ -2,15 +2,18 @@
 {% block title %} Blogs| Update Blog {% endblock %}
 {% block content %}
 
-
-<h1>Update Blog</h1>
-<br/><br/>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!-- {{ form.as_ul }} -->
-        <button class="btn btn-success"> Update </button>
-    </form>
-</div>
+{% if user.is_authenticated %}
+    <h1>Update Blog</h1>
+    <br/><br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- {{ form.as_ul }} -->
+            <button class="btn btn-success"> Update </button>
+        </form>
+    </div>
+{% else %}
+    YOU ARE NOT ALLOWED TO UPDATE ANY POST 
+{% endif %}
 {% endblock %}
