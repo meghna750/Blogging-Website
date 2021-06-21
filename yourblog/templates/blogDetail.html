@@ -2,13 +2,15 @@
 {% block title %} Blogpost | {{ post.title_tag}} {% endblock %}
 {% block content %}
 
-
+<!-- Current User: {{user.id}} -->
 <h1>{{ post.title}}</h1>
 <small>By : {{post.author.first_name}} {{post.author.last_name}}- 
     {{post.category}}
     {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
         <a href="{% url 'update_post' post.pk %}" class="btn btn-warning">( Edit )</a>
         <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">( Delete )</a> 
+        {% endif %}
     {% endif %}
 <p>{{post.post_date}}</p>
 </small>
