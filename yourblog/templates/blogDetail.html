@@ -4,7 +4,7 @@
 
 <!-- Current User: {{user.id}} -->
 <h1>{{ post.title}}</h1>
-<small>By : {{post.author.first_name}} {{post.author.last_name}}- 
+<small>📍 {{post.author.first_name}} {{post.author.last_name}}- 
     {{post.category}}
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
