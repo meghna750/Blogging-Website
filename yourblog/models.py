@@ -18,6 +18,7 @@ class Category(models.Model):
         return reverse('home')
 
 class Post(models.Model):
+    header_image=models.ImageField(null=True , blank= True , upload_to="images/")
     title=models.CharField(max_length=255)
     title_tag=models.CharField(max_length=255)
     author=models.ForeignKey(User,on_delete=models.CASCADE)

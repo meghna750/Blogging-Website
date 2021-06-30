@@ -19,6 +19,9 @@
 <br/>
 {{post.body|safe}}
 <br/>
+{% if post.header_image %}
+<img src="{{post.header_image.url }}"></img>
+{% endif %}
 <a href="{%url 'home'%}" class="btn btn-secondary">BACK</a>
 <br/><br/>
 <hr>
