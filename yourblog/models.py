@@ -17,6 +17,18 @@ class Category(models.Model):
         #return reverse('blogDetail',args=(str(self.id)))
         return reverse('home')
 
+class profile(models.Model): 
+    user=models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    bio =models.TextField()
+    profile_pic = models.ImageField(null = True , blank=True,upload_to = "images/profile/")
+    website_url = models.CharField(max_length=250 , null = True)
+    insta_url = models.CharField(max_length=250 , null = True)
+    fb_url = models.CharField(max_length=250 , null = True)
+    twitter_url = models.CharField(max_length=250 , null = True)
+    linkedin_url = models.CharField(max_length=250 , null = True)
+    def __str__(self): 
+        return str(self.user)
+
 class Post(models.Model):
     header_image=models.ImageField(null=True , blank= True , upload_to="images/")
     title=models.CharField(max_length=255)

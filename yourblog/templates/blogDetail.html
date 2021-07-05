@@ -1,11 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} Blogpost | {{ post.title_tag}} {% endblock %}
 {% block content %}
 
 <!-- Current User: {{user.id}} -->
 <h1>{{ post.title}}</h1>
-<small>📍 {{post.author.first_name}} {{post.author.last_name}}- 
-    {{post.category}}
+📍 AUTHOR -
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            {% if post.author.profile.profile_pic.url %}
+            <img src="{{post.author.profile.profile_pic }}" class="img-fluid rounded-start">
+            {% else %}
+            <img src="{% static 'theblog/images/5907.jpg' %}" class="img-fluid rounded-start"alt=".....">
+            {% endif %}
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h5>
+              <p class="card-text">
+                  {% if post.author.profile.website_url  %}
+                  <a href="{{post.author.profile.website_url }}"> Website </a>
+                  {% endif %}
+                  {% if post.author.profile.fb_url  %}
+                  |<a href="{{post.author.profile.fb_url }}"> Facebook </a>
+                  {% endif %}
+                  {% if post.author.profile.linkedin_url  %}
+                  |<a href="{{post.author.profile.linkedin_url }}"> LinkedIn </a>
+                  {% endif %}
+                  {% if post.author.profile.twitter_url %}
+                  |<a href="{{post.author.profile.twitter_url }}"> Twitter </a>
+                  {% endif %}
+                  {% if post.author.profile.insta_url %}
+                  |<a href="{{post.author.profile.insta_url }}"> Instagram</a>
+                  {% endif %}
+                </p>
+              <p class="card-text">{{post.author.profile.bio }}</p>
+              <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- {{post.author.first_name}} {{post.author.last_name}}- 
+    <img src="{{post.author.profile.profile_pic.url }}" width="100" height="100" class="rounded-circle"></img>
+    <br><br><br> -->
+    Blog Category : {{post.category}}
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
         <a href="{% url 'update_post' post.pk %}" class="btn btn-warning">( Edit )</a>
@@ -13,7 +52,6 @@
         {% endif %}
     {% endif %}
 <p>{{post.post_date}}</p>
-</small>
 <br/>
 <hr>
 <br/>
