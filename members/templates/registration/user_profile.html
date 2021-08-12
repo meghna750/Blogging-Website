@@ -9,7 +9,7 @@
 <div class="card mb-3" style="max-width: 540px;">
     <div class="row g-0">
         <div class="col-md-4">
-            {% if page_user.profile_pic.url %}
+            {% if page_user.profile_pic %}
             <img src="{{page_user.profile_pic.url }}" class="img-fluid rounded-start">
             {% else %}
             <img src="{% static 'theblog/images/5907.jpg' %}" class="img-fluid rounded-start" alt=".....">

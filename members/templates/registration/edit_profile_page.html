@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Blogs| Profile Edit {% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+    {% if user.id== profile.user.id %}
+    <h1>Edit Profile</h1>
+    <br/><br/>
+    <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{ form.media }} -->
+            {{ form.as_p }}
+            <!-- {{ form.as_ul }} -->
+            <button class="btn btn-success">Update & Save</button>
+        </form>
+    </div>
+    {% else %}
+    YOU ARE NOT THE CORRECT USER :( . 
+    {% endif %}
+{% else %}
+    YOU ARE NOT ALLOWED TO ADD POSTS, PLEASE LOGIN FIRST !!
+{% endif %}
+{% endblock %}

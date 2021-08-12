@@ -28,6 +28,8 @@ class profile(models.Model):
     linkedin_url = models.CharField(max_length=250 , null = True)
     def __str__(self): 
         return str(self.user)
+    def get_absolute_url(self): 
+        return reverse('home')
 
 class Post(models.Model):
     header_image=models.ImageField(null=True , blank= True , upload_to="images/")
